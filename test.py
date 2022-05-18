@@ -1,15 +1,36 @@
 from qiskit import *
-# Create a Quantum Circuit acting on a quantum register of three qubits
-circ_q = QuantumRegister(3)
-circ_c = ClassicalRegister(3)
-circ = QuantumCircuit(circ_q,circ_c)
-# Add a H gate on qubit 0, putting this qubit in superposition.
-circ.h(circ_q[0])
-# Add a CX (CNOT) gate on control qubit 0 and target qubit 1, putting
-# the qubits in a Bell state.
-circ.cx(circ_q[0], circ_q[1])
-# Add a CX (CNOT) gate on control qubit 0 and target qubit 2, putting
-# the qubits in a GHZ state.
-circ.cx(circ_q[0], circ_q[2])
-circ.measure(circ_q,circ_c)
-print(circ)
+
+qreg_q = QuantumRegister(3, 'q')
+creg_c = ClassicalRegister(3, 'c')
+circuit = QuantumCircuit(qreg_q, creg_c)
+
+circuit.reset(qreg_q[0])
+circuit.reset(qreg_q[1])
+circuit.reset(qreg_q[2])
+circuit.h(qreg_q[2])
+circuit.cx(qreg_q[1], qreg_q[2])
+circuit.tdg(qreg_q[2])
+circuit.cx(qreg_q[0], qreg_q[2])
+circuit.t(qreg_q[2])
+circuit.cx(qreg_q[1], qreg_q[2])
+circuit.tdg(qreg_q[2])
+circuit.cx(qreg_q[0], qreg_q[2])
+circuit.t(qreg_q[1])
+circuit.t(qreg_q[2])
+circuit.cx(qreg_q[0], qreg_q[1])
+circuit.h(qreg_q[2])
+circuit.t(qreg_q[0])
+circuit.tdg(qreg_q[1])
+circuit.cx(qreg_q[0], qreg_q[1])
+circuit.measure(qreg_q,creg_c)
+print(circuit)
+# Using Qiskit Aer's Qasm Simulator
+simulator = BasicAer.get_backend('qasm_simulator')
+
+# Simulating the circuit using the simulator to get the result
+job = execute(circuit, simulator)
+result = job.result()
+
+# Getting the aggregated binary outcomes of the circuit.
+counts = result.get_counts(circuit)
+print (counts)
