@@ -46,9 +46,3 @@ for i in range(pow(2,3)):
 print("\n")
 for i in range(pow(2,3)):
     print(str(format(i,'b')).zfill(3), counts[str(format(i,'b')).zfill(3)]-pow(2,7))
-~
-~
-~
-~
-~
-
