@@ -54,3 +54,5 @@ print("\n")
 
 for i in range(pow(2,c_circuit)):
     print(str(format(i,'b')).zfill(2), counts[str(format(i,'b')).zfill(2)]-(pow(2,10)/pow(2,c_circuit)))
+
+print(type(circuit))
