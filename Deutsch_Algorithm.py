@@ -1,4 +1,6 @@
 from qiskit import *
+from qiskit.test.mock import FakeMontreal
+device_backend = FakeMontreal()
 
 q_circuit = 3
 c_circuit = 2
@@ -37,7 +39,8 @@ circuit.measure(qreg_q[1], creg_c[0])
 print(circuit)
 
 # Using Qiskit Aer's Qasm Simulator
-simulator = BasicAer.get_backend('qasm_simulator')
+from qiskit.providers.aer import AerSimulator
+simulator = AerSimulator.from_backend(device_backend)
 
 # Simulating the circuit using the simulator to get the result
 job = execute(circuit, simulator)
