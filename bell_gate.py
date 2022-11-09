@@ -1,7 +1,7 @@
 from qiskit import *
 
 # Build quantum circuit
-qreg_q = QuantumRegister(2, 'q')
+qreg_q = QuantumRegister(3, 'q')
 creg_c = ClassicalRegister(3, 'c')
 circuit = QuantumCircuit(qreg_q, creg_c)
 
@@ -30,6 +30,7 @@ circuit.measure(qreg_q,creg_c)
 
 # Print quantum circuit
 print(circuit)
+print(circuit.decompose().decompose())
 
 # Using Qiskit Aer's Qasm Simulator
 simulator = BasicAer.get_backend('qasm_simulator')

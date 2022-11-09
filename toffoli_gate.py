@@ -30,6 +30,7 @@ circuit.measure(qreg_q,creg_c)
 
 # Print quantum circuit
 print(circuit)
+print(circuit.decompose().decompose())
 
 # Using Qiskit Aer's Qasm Simulator
 simulator = BasicAer.get_backend('qasm_simulator')
