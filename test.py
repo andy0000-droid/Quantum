@@ -19,7 +19,7 @@ print(circuit)
 # Using Qiskit Aer's Qasm Simulator
 # simulator = BasicAer.get_backend('qasm_simulator')
 from qiskit.providers.aer import AerSimulator
-sim_Montreal = AerSimulator.from_backend(device_backend)
+simulator = AerSimulator.from_backend(device_backend)
 
 # Simulating the circuit using the simulator to get the result
 job = execute(circuit, simulator)
