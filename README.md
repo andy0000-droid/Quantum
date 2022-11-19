@@ -1,2 +1,2 @@
 # Quantum
-## use qiskit module to implement quantum circuit
+## Study quantum circuit and how to implement with code
